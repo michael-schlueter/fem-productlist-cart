@@ -4,7 +4,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      red: "#C73B0F",
+      red: {
+        500: "#C73B0F",
+        800: "#952c0b"
+      },
       green: "#1EA575",
       rose: {
         50: "#FCF8F6",
@@ -14,6 +17,7 @@ export default {
         500: "#87635A",
         900: "#260F08",
       },
+      white: '#FFFFFF',
     },
     fontSize: {
       sm: ["0.875rem", "0.875rem"],

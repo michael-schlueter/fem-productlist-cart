@@ -16,7 +16,7 @@ function App() {
                 <CartButton />
                 <h2 className="text-sm text-rose-500">{dessert.category}</h2>
                 <p className="text-rose-900 font-semibold">{dessert.name}</p>
-                <p className="text-red font-semibold">
+                <p className="text-red-500 font-semibold">
                   ${formatPrice(dessert.price)}
                 </p>
               </li>
