@@ -16,10 +16,10 @@ export default {
       },
     },
     fontSize: {
-      sm: ["0.875rem", "1.3125rem"],
-      base: ["1rem", "1.5rem"],
-      xl: ["1.5rem", "1.875rem"],
-      "2xl": ["3.5rem", "4.2rem"],
+      sm: ["0.875rem", "0.875rem"],
+      base: ["1rem", "1rem"],
+      xl: ["1.5rem", "1.5rem"],
+      "2xl": ["2.5rem", "3rem"],
     },
     extend: {
       fontFamily: {
