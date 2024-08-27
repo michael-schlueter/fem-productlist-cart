@@ -1,6 +1,7 @@
 import Cart from "./components/Cart";
 import CartButton from "./components/CartButton";
 import desserts from "./data.json";
+import { formatPrice } from "./utils";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
                 <CartButton />
                 <h2 className="text-sm text-rose-500">{dessert.category}</h2>
                 <p className="text-rose-900 font-semibold">{dessert.name}</p>
-                <p className="text-red font-semibold">${dessert.price}</p>
+                <p className="text-red font-semibold">
+                  ${formatPrice(dessert.price)}
+                </p>
               </li>
             ))}
           </ul>
