@@ -1,5 +1,5 @@
 import Cart from "./components/Cart";
-import CartButton from "./components/CartButton";
+import AddToCartButton from "./components/AddToCartButton";
 import desserts from "./data.json";
 import { formatPrice } from "./utils";
 
@@ -13,7 +13,7 @@ function App() {
             {desserts.map((dessert, index) => (
               <li key={index}>
                 <img src={dessert.image.mobile} alt={dessert.name} />
-                <CartButton />
+                <AddToCartButton />
                 <h2 className="text-sm text-rose-500">{dessert.category}</h2>
                 <p className="text-rose-900 font-semibold">{dessert.name}</p>
                 <p className="text-red-500 font-semibold">
