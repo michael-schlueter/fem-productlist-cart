@@ -1,8 +1,16 @@
 import AddToCartButton from "./AddToCartButton";
 import desserts from "../data.json";
 import { formatPrice } from "../utils";
+import { useState } from "react";
+import SelectQuantityButton from "./SelectQuantityButton";
 
 export default function CartList() {
+  const [isAdding, setIsAdding] = useState(false);
+
+  const handleAddInitiation = () => {
+    setIsAdding(true);
+  };
+
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
@@ -12,7 +20,12 @@ export default function CartList() {
             <div className="rounded-lg overflow-hidden">
               <img src={dessert.image.mobile} alt={dessert.name} />
             </div>
-            <AddToCartButton />
+            {isAdding ? (
+              <SelectQuantityButton />
+            ) : (
+              <AddToCartButton onAddInitiation={handleAddInitiation} />
+            )}
+
             <div className="flex flex-col gap-1">
               <h2 className="text-sm text-rose-500">{dessert.category}</h2>
               <p className="text-rose-900 font-semibold">{dessert.name}</p>
