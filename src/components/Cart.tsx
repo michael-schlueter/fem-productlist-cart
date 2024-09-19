@@ -18,8 +18,8 @@ export default function Cart({ cartItems }: CartProps) {
       {cartItems.length > 0 ? (
         <div>
           <ul className="flex flex-col">
-            {cartItems.map((cartItem) => (
-              <li className="flex items-center justify-between cart-item py-4 border-b-[1px] border-b-rose-100">
+            {cartItems.map((cartItem, index) => (
+              <li key={index} className="flex items-center justify-between cart-item py-4 border-b-[1px] border-b-rose-100">
                 <div className="flex flex-col gap-2">
                   <h3 className="text-sm font-bold text-rose-900">
                     {cartItem.name}

@@ -4,32 +4,35 @@ import CartList from "./components/CartList";
 import { CartItem } from "./types";
 
 function App() {
-  const [cartItems, setCartItems] = useState([
-    {
-      name: "Waffle with Berries",
-      price: 6.5,
-      quantity: 2,
-    },
-    {
-      name: "Vanilla Bean Crème Brûlée",
-      price: 7,
-      quantity: 1,
-    },
-    {
-      name: "Macaron Mix of Five",
-      price: 8,
-      quantity: 2,
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addCartItem = (cartItem: CartItem) => {
     setCartItems([...cartItems, cartItem]);
   };
 
+  const increaseItemQuantity = (cartItemName: string) => {
+    setCartItems(
+      cartItems.map((item) => {
+        if (item.name === cartItemName) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
   return (
     <div className="bg-rose-50">
       <main className="flex flex-col gap-8 p-6">
-        <CartList onAddCartItem={addCartItem} cartItems={cartItems} />
+        <CartList
+          onAddCartItem={addCartItem}
+          cartItems={cartItems}
+          onIncreaseItemQuantity={increaseItemQuantity}
+        />
         <Cart cartItems={cartItems} />
       </main>
     </div>

@@ -7,28 +7,29 @@ import { CartItem } from "../types";
 type CartListProps = {
   onAddCartItem: (cartItem: CartItem) => void;
   cartItems: CartItem[];
+  onIncreaseItemQuantity: (cartItemName: string) => void;
 };
 
-export default function CartList({ onAddCartItem, cartItems }: CartListProps) {
+export default function CartList({ onAddCartItem, cartItems, onIncreaseItemQuantity }: CartListProps) {
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
       <ul className="flex flex-col gap-6">
         {desserts.map((dessert, index) => {
-          const isDessertInCart = cartItems.some(
-            (cartItem) => cartItem.name === dessert.name
+          const cartItem = cartItems.find(
+            (item) => item.name === dessert.name
           );
           return (
             <li className="flex flex-col gap-4" key={index}>
               <div
                 className={`rounded-lg overflow-hidden ${
-                  isDessertInCart ? " border-2 border-red-500" : ""
+                  cartItem ? " border-2 border-red-500" : ""
                 }`}
               >
                 <img src={dessert.image.mobile} alt={dessert.name} />
               </div>
-              {isDessertInCart ? (
-                <SelectQuantityButton />
+              {cartItem ? (
+                <SelectQuantityButton onIncreaseItemQuantity={onIncreaseItemQuantity} cartItem={cartItem} />
               ) : (
                 <AddToCartButton
                   cartItem={dessert}
