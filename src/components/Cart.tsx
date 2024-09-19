@@ -7,9 +7,10 @@ type CartProps = {
     quantity: number;
     price: number;
   }[];
+  onRemoveItemFromCart: (cartItemName: string) => void;
 };
 
-export default function Cart({ cartItems }: CartProps) {
+export default function Cart({ cartItems, onRemoveItemFromCart }: CartProps) {
   return (
     <section className="bg-white p-6 flex flex-col gap-6">
       <h3 className="text-xl font-bold text-red-500">
@@ -19,7 +20,10 @@ export default function Cart({ cartItems }: CartProps) {
         <div>
           <ul className="flex flex-col">
             {cartItems.map((cartItem, index) => (
-              <li key={index} className="flex items-center justify-between cart-item py-4 border-b-[1px] border-b-rose-100">
+              <li
+                key={index}
+                className="flex items-center justify-between cart-item py-4 border-b-[1px] border-b-rose-100"
+              >
                 <div className="flex flex-col gap-2">
                   <h3 className="text-sm font-bold text-rose-900">
                     {cartItem.name}
@@ -36,9 +40,12 @@ export default function Cart({ cartItems }: CartProps) {
                     </p>
                   </div>
                 </div>
-                <div className="w-5 h-5 flex justify-center items-center rounded-full border border-rose-500">
+                <button
+                  onClick={() => onRemoveItemFromCart(cartItem.name)}
+                  className="w-5 h-5 flex justify-center items-center rounded-full border border-rose-500"
+                >
                   <img src="./public/assets/images/icon-remove-item.svg" />
-                </div>
+                </button>
               </li>
             ))}
           </ul>

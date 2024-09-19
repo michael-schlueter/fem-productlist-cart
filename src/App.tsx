@@ -42,6 +42,10 @@ function App() {
     );
   };
 
+  const removeItemFromCart = (cartItemName: string) => {
+    setCartItems(cartItems.filter((item) => item.name !== cartItemName));
+  };
+
   return (
     <div className="bg-rose-50">
       <main className="flex flex-col gap-8 p-6">
@@ -51,7 +55,7 @@ function App() {
           onIncreaseItemQuantity={increaseItemQuantity}
           onDecreaseItemQuantity={decreaseItemQuantity}
         />
-        <Cart cartItems={cartItems} />
+        <Cart cartItems={cartItems} onRemoveItemFromCart={removeItemFromCart} />
       </main>
     </div>
   );
