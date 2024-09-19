@@ -25,6 +25,23 @@ function App() {
     );
   };
 
+  const decreaseItemQuantity = (cartItemName: string) => {
+    setCartItems(
+      cartItems
+        .map((item) => {
+          if (item.name === cartItemName) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          } else {
+            return item;
+          }
+        })
+        .filter((item) => item.quantity > 0) // filter out items with quantity 0
+    );
+  };
+
   return (
     <div className="bg-rose-50">
       <main className="flex flex-col gap-8 p-6">
@@ -32,6 +49,7 @@ function App() {
           onAddCartItem={addCartItem}
           cartItems={cartItems}
           onIncreaseItemQuantity={increaseItemQuantity}
+          onDecreaseItemQuantity={decreaseItemQuantity}
         />
         <Cart cartItems={cartItems} />
       </main>

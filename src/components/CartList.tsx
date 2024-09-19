@@ -8,9 +8,10 @@ type CartListProps = {
   onAddCartItem: (cartItem: CartItem) => void;
   cartItems: CartItem[];
   onIncreaseItemQuantity: (cartItemName: string) => void;
+  onDecreaseItemQuantity: (cartItemName: string) => void;
 };
 
-export default function CartList({ onAddCartItem, cartItems, onIncreaseItemQuantity }: CartListProps) {
+export default function CartList({ onAddCartItem, cartItems, onIncreaseItemQuantity, onDecreaseItemQuantity }: CartListProps) {
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
@@ -29,7 +30,7 @@ export default function CartList({ onAddCartItem, cartItems, onIncreaseItemQuant
                 <img src={dessert.image.mobile} alt={dessert.name} />
               </div>
               {cartItem ? (
-                <SelectQuantityButton onIncreaseItemQuantity={onIncreaseItemQuantity} cartItem={cartItem} />
+                <SelectQuantityButton onIncreaseItemQuantity={onIncreaseItemQuantity} onDecreaseItemQuantity={onDecreaseItemQuantity} cartItem={cartItem} />
               ) : (
                 <AddToCartButton
                   cartItem={dessert}
