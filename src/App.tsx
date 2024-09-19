@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className="bg-rose-50">
-      <main className="flex flex-col gap-8 p-6 sm:p-10">
+      <main className="flex flex-col gap-8 p-6 sm:p-10 lg:grid lg:grid-cols-[2fr_1fr]">
         <CartList
           onAddCartItem={addCartItem}
           cartItems={cartItems}
