@@ -1,4 +1,4 @@
-import { formatPrice } from "../utils";
+import { formatPrice } from "../lib/utils";
 import Button from "./Button";
 
 type CartProps = {

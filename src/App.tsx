@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Cart from "./components/Cart";
-import CartList from "./components/CartList";
+import DessertList from "./components/DessertList";
 import { CartItem } from "./types";
 
 function App() {
@@ -49,7 +49,7 @@ function App() {
   return (
     <div className="bg-rose-50 lg:flex lg:items-center lg:justify-center">
       <main className="max-w-[1260px] flex flex-col gap-8 p-6 sm:p-10 lg:grid lg:grid-cols-[2fr_1fr]">
-        <CartList
+        <DessertList
           onAddCartItem={addCartItem}
           cartItems={cartItems}
           onIncreaseItemQuantity={increaseItemQuantity}

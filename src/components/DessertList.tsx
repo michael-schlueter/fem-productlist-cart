@@ -1,22 +1,22 @@
 import AddToCartButton from "./AddToCartButton";
 import desserts from "../data.json";
-import { formatPrice } from "../utils";
+import { formatPrice } from "../lib/utils";
 import SelectQuantityButton from "./SelectQuantityButton";
 import { CartItem } from "../types";
 
-type CartListProps = {
+type DessertListProps = {
   onAddCartItem: (cartItem: CartItem) => void;
   cartItems: CartItem[];
   onIncreaseItemQuantity: (cartItemName: string) => void;
   onDecreaseItemQuantity: (cartItemName: string) => void;
 };
 
-export default function CartList({
+export default function DessertList({
   onAddCartItem,
   cartItems,
   onIncreaseItemQuantity,
   onDecreaseItemQuantity,
-}: CartListProps) {
+}: DessertListProps) {
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
