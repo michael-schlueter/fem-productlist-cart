@@ -30,6 +30,18 @@ export default function CartList({
                   cartItem ? " border-2 border-red-500" : ""
                 }`}
               >
+                <picture>
+                  <source
+                    srcSet={dessert.image.desktop}
+                    media="(min-width: 1024px)"
+                  />
+                </picture>
+                <picture>
+                  <source
+                    srcSet={dessert.image.tablet}
+                    media="(min-width: 640px)"
+                  />
+                </picture>
                 <img src={dessert.image.mobile} alt={dessert.name} />
               </div>
               {cartItem ? (
