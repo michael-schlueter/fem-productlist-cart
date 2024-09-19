@@ -11,15 +11,18 @@ type CartListProps = {
   onDecreaseItemQuantity: (cartItemName: string) => void;
 };
 
-export default function CartList({ onAddCartItem, cartItems, onIncreaseItemQuantity, onDecreaseItemQuantity }: CartListProps) {
+export default function CartList({
+  onAddCartItem,
+  cartItems,
+  onIncreaseItemQuantity,
+  onDecreaseItemQuantity,
+}: CartListProps) {
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
-      <ul className="flex flex-col gap-6">
+      <ul className="flex flex-col gap-6 sm:grid sm:grid-cols-3 sm:gap-y-8">
         {desserts.map((dessert, index) => {
-          const cartItem = cartItems.find(
-            (item) => item.name === dessert.name
-          );
+          const cartItem = cartItems.find((item) => item.name === dessert.name);
           return (
             <li className="flex flex-col gap-4" key={index}>
               <div
@@ -30,7 +33,11 @@ export default function CartList({ onAddCartItem, cartItems, onIncreaseItemQuant
                 <img src={dessert.image.mobile} alt={dessert.name} />
               </div>
               {cartItem ? (
-                <SelectQuantityButton onIncreaseItemQuantity={onIncreaseItemQuantity} onDecreaseItemQuantity={onDecreaseItemQuantity} cartItem={cartItem} />
+                <SelectQuantityButton
+                  onIncreaseItemQuantity={onIncreaseItemQuantity}
+                  onDecreaseItemQuantity={onDecreaseItemQuantity}
+                  cartItem={cartItem}
+                />
               ) : (
                 <AddToCartButton
                   cartItem={dessert}
