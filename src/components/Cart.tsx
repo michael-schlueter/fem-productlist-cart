@@ -1,16 +1,14 @@
+import { CartItem } from "@/types";
 import { formatPrice } from "../lib/utils";
-import Button from "./Button";
+import OrderConfirmation from "./OrderConfirmation";
 
 type CartProps = {
-  cartItems: {
-    name: string;
-    quantity: number;
-    price: number;
-  }[];
+  cartItems: CartItem[];
   onRemoveItemFromCart: (cartItemName: string) => void;
+  onStartNewOrder: () => void;
 };
 
-export default function Cart({ cartItems, onRemoveItemFromCart }: CartProps) {
+export default function Cart({ cartItems, onRemoveItemFromCart, onStartNewOrder }: CartProps) {
   return (
     <section>
       <div className="bg-white p-6 flex flex-col gap-6 rounded-xl">
@@ -70,7 +68,7 @@ export default function Cart({ cartItems, onRemoveItemFromCart }: CartProps) {
                 delivery
               </p>
             </div>
-            <Button>Confirm Order</Button>
+            <OrderConfirmation cartItems={cartItems} onStartNewOrder={onStartNewOrder} />
           </div>
         ) : (
           <div className="flex flex-col items-center gap-4 p-4">

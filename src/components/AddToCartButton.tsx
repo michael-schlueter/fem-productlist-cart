@@ -27,8 +27,7 @@ export default function AddToCartButton({
       className="w-40 h-[44px] bg-white rounded-full border border-rose-400 hover:border-red-500 focus-visible:border-red-500 text-rose-900 hover:text-red-500 focus-visible:text-red-500 text-sm font-bold flex gap-2 items-center justify-center self-center p-3 -mt-[38px]"
       onClick={() =>
         onAddCartItem({
-          name: cartItem.name,
-          price: cartItem.price,
+          ...cartItem,
           quantity: 1,
         })
       }

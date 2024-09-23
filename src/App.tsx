@@ -46,6 +46,11 @@ function App() {
     setCartItems(cartItems.filter((item) => item.name !== cartItemName));
   };
 
+  const startNewOrder = () => {
+    setCartItems([]);
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <div className="bg-rose-50 lg:flex lg:items-center lg:justify-center">
       <main className="max-w-[1260px] flex flex-col gap-8 p-6 sm:p-10 lg:grid lg:grid-cols-[2fr_1fr]">
@@ -55,7 +60,11 @@ function App() {
           onIncreaseItemQuantity={increaseItemQuantity}
           onDecreaseItemQuantity={decreaseItemQuantity}
         />
-        <Cart cartItems={cartItems} onRemoveItemFromCart={removeItemFromCart} />
+        <Cart
+          cartItems={cartItems}
+          onRemoveItemFromCart={removeItemFromCart}
+          onStartNewOrder={startNewOrder}
+        />
       </main>
     </div>
   );
