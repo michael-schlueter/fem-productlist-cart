@@ -8,7 +8,11 @@ type CartProps = {
   onStartNewOrder: () => void;
 };
 
-export default function Cart({ cartItems, onRemoveItemFromCart, onStartNewOrder }: CartProps) {
+export default function Cart({
+  cartItems,
+  onRemoveItemFromCart,
+  onStartNewOrder,
+}: CartProps) {
   return (
     <section>
       <div className="bg-white p-6 flex flex-col gap-6 rounded-xl">
@@ -41,9 +45,21 @@ export default function Cart({ cartItems, onRemoveItemFromCart, onStartNewOrder 
                   </div>
                   <button
                     onClick={() => onRemoveItemFromCart(cartItem.name)}
-                    className="w-5 h-5 flex justify-center items-center rounded-full border border-rose-500"
+                    className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900"
                   >
-                    <img src="./public/assets/images/icon-remove-item.svg" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      fill="none"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        className="group-hover:fill-rose-900"
+                        fill="#CAAFA7"
+                        d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
+                      />
+                    </svg>
                   </button>
                 </li>
               ))}
@@ -68,7 +84,10 @@ export default function Cart({ cartItems, onRemoveItemFromCart, onStartNewOrder 
                 delivery
               </p>
             </div>
-            <OrderConfirmation cartItems={cartItems} onStartNewOrder={onStartNewOrder} />
+            <OrderConfirmation
+              cartItems={cartItems}
+              onStartNewOrder={onStartNewOrder}
+            />
           </div>
         ) : (
           <div className="flex flex-col items-center gap-4 p-4">
