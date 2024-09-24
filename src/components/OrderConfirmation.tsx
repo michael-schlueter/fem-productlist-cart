@@ -1,17 +1,17 @@
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Button from "./Button";
 import { formatPrice } from "@/lib/utils";
-import { CartItem } from "@/types";
+import { useCartItemsContext } from "@/lib/hooks";
 
-type OrderConfirmationProps = {
-  cartItems: CartItem[];
-  onStartNewOrder: () => void;
-};
+export default function OrderConfirmation() {
+  const { cartItems, startNewOrder } = useCartItemsContext();
 
-export default function OrderConfirmation({
-  cartItems,
-  onStartNewOrder,
-}: OrderConfirmationProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -23,7 +23,9 @@ export default function OrderConfirmation({
           <DialogTitle className="text-2xl text-rose-900 font-bold mt-6">
             Order Confirmed
           </DialogTitle>
-          <DialogDescription className="text-rose-500 mt-2">We hope you enjoy your food!</DialogDescription>
+          <DialogDescription className="text-rose-500 mt-2">
+            We hope you enjoy your food!
+          </DialogDescription>
         </div>
         <div className="bg-rose-50 p-6 pt-2">
           <ul className="flex flex-col">
@@ -69,7 +71,7 @@ export default function OrderConfirmation({
             </p>
           </div>
         </div>
-        <Button onClick={onStartNewOrder}>Start New Order</Button>
+        <Button onClick={startNewOrder}>Start New Order</Button>
       </DialogContent>
     </Dialog>
   );
