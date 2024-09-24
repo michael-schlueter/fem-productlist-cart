@@ -1,18 +1,10 @@
-import { CartItem } from "@/types";
 import { formatPrice } from "../lib/utils";
 import OrderConfirmation from "./OrderConfirmation";
+import { useCartItemsContext } from "@/lib/hooks";
 
-type CartProps = {
-  cartItems: CartItem[];
-  onRemoveItemFromCart: (cartItemName: string) => void;
-  onStartNewOrder: () => void;
-};
+export default function Cart() {
+  const { cartItems, removeItemFromCart } = useCartItemsContext();
 
-export default function Cart({
-  cartItems,
-  onRemoveItemFromCart,
-  onStartNewOrder,
-}: CartProps) {
   return (
     <section>
       <div className="bg-white p-6 flex flex-col gap-6 rounded-xl">
@@ -44,7 +36,7 @@ export default function Cart({
                     </div>
                   </div>
                   <button
-                    onClick={() => onRemoveItemFromCart(cartItem.name)}
+                    onClick={() => removeItemFromCart(cartItem.name)}
                     className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900 focus:outline-none focus-visible:border-rose-900 transition duration-200"
                     aria-label={`Remove ${cartItem.name} from cart`}
                   >
@@ -79,16 +71,16 @@ export default function Cart({
               </p>
             </div>
             <div className="flex mt-6 mb-6 py-4 items-center justify-center gap-2 bg-rose-50">
-              <img src="./public/assets/images/icon-carbon-neutral.svg" alt="carbon neutral icon" />
+              <img
+                src="./public/assets/images/icon-carbon-neutral.svg"
+                alt="carbon neutral icon"
+              />
               <p className="text-sm text-rose-900">
                 This is a <span className="font-bold">carbon-neutral</span>{" "}
                 delivery
               </p>
             </div>
-            <OrderConfirmation
-              cartItems={cartItems}
-              onStartNewOrder={onStartNewOrder}
-            />
+            <OrderConfirmation />
           </div>
         ) : (
           <div className="flex flex-col items-center gap-4 p-4">

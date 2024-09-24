@@ -2,21 +2,11 @@ import AddToCartButton from "./AddToCartButton";
 import desserts from "../data.json";
 import { formatPrice } from "../lib/utils";
 import SelectQuantityButton from "./SelectQuantityButton";
-import { CartItem } from "../types";
+import { useCartItemsContext } from "@/lib/hooks";
 
-type DessertListProps = {
-  onAddCartItem: (cartItem: CartItem) => void;
-  cartItems: CartItem[];
-  onIncreaseItemQuantity: (cartItemName: string) => void;
-  onDecreaseItemQuantity: (cartItemName: string) => void;
-};
+export default function DessertList() {
+  const { cartItems } = useCartItemsContext();
 
-export default function DessertList({
-  onAddCartItem,
-  cartItems,
-  onIncreaseItemQuantity,
-  onDecreaseItemQuantity,
-}: DessertListProps) {
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
@@ -45,16 +35,9 @@ export default function DessertList({
                 <img src={dessert.image.mobile} alt={dessert.name} />
               </div>
               {cartItem ? (
-                <SelectQuantityButton
-                  onIncreaseItemQuantity={onIncreaseItemQuantity}
-                  onDecreaseItemQuantity={onDecreaseItemQuantity}
-                  cartItem={cartItem}
-                />
+                <SelectQuantityButton cartItem={cartItem} />
               ) : (
-                <AddToCartButton
-                  cartItem={dessert}
-                  onAddCartItem={onAddCartItem}
-                />
+                <AddToCartButton cartItem={dessert} />
               )}
 
               <div className="flex flex-col gap-1">
