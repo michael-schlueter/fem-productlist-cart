@@ -14,7 +14,7 @@ export default function OrderConfirmation({
 }: OrderConfirmationProps) {
   return (
     <Dialog>
-      <DialogTrigger className="w-full">
+      <DialogTrigger tabIndex={-1} className="w-full">
         <Button>Confirm Order</Button>
       </DialogTrigger>
       <DialogContent className="grid gap-8 p-6 pt-10 border-none rounded-t-xl">

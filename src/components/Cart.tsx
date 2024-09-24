@@ -45,7 +45,7 @@ export default function Cart({
                   </div>
                   <button
                     onClick={() => onRemoveItemFromCart(cartItem.name)}
-                    className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900 transition duration-200"
+                    className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900 focus:outline-none focus-visible:border-rose-900 transition duration-200"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ export default function Cart({
                       viewBox="0 0 10 10"
                     >
                       <path
-                        className="group-hover:fill-rose-900 transition duration-200"
+                        className="group-hover:fill-rose-900 group-focus-visible:fill-rose-900 transition duration-200"
                         fill="#CAAFA7"
                         d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
                       />
