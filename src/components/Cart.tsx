@@ -46,6 +46,7 @@ export default function Cart({
                   <button
                     onClick={() => onRemoveItemFromCart(cartItem.name)}
                     className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900 focus:outline-none focus-visible:border-rose-900 transition duration-200"
+                    aria-label={`Remove ${cartItem.name} from cart`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +79,7 @@ export default function Cart({
               </p>
             </div>
             <div className="flex mt-6 mb-6 py-4 items-center justify-center gap-2 bg-rose-50">
-              <img src="./public/assets/images/icon-carbon-neutral.svg" />
+              <img src="./public/assets/images/icon-carbon-neutral.svg" alt="carbon neutral icon" />
               <p className="text-sm text-rose-900">
                 This is a <span className="font-bold">carbon-neutral</span>{" "}
                 delivery
@@ -94,7 +95,7 @@ export default function Cart({
             <div className="w-32 h-32">
               <img
                 src="./public/assets/images/illustration-empty-cart.svg"
-                alt=""
+                alt="empty cart illustration"
               />
             </div>
             <p className="text-sm text-center font-bold text-rose-500">
