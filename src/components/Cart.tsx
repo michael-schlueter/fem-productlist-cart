@@ -1,9 +1,11 @@
-import { formatPrice } from "../lib/utils";
+import CartList from "./CartList";
+import CartPrice from "./CartPrice";
+import EmptyCart from "./EmptyCart";
 import OrderConfirmation from "./OrderConfirmation";
 import { useCartItemsContext } from "@/lib/hooks";
 
 export default function Cart() {
-  const { cartItems, removeItemFromCart } = useCartItemsContext();
+  const { cartItems } = useCartItemsContext();
 
   return (
     <section>
@@ -13,63 +15,8 @@ export default function Cart() {
         </h3>
         {cartItems.length > 0 ? (
           <div>
-            <ul className="flex flex-col">
-              {cartItems.map((cartItem, index) => (
-                <li
-                  key={index}
-                  className="flex items-center justify-between cart-item py-4 border-b-[1px] border-b-rose-100"
-                >
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-sm font-bold text-rose-900">
-                      {cartItem.name}
-                    </h3>
-                    <div className="flex gap-2 text-sm">
-                      <p className="text-red-500 font-bold">
-                        {cartItem.quantity}x
-                      </p>
-                      <p className="text-rose-500">
-                        @{formatPrice(cartItem.price)}
-                      </p>
-                      <p className="text-rose-500 font-bold">
-                        ${formatPrice(cartItem.quantity * cartItem.price)}
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => removeItemFromCart(cartItem.name)}
-                    className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900 focus:outline-none focus-visible:border-rose-900 transition duration-200"
-                    aria-label={`Remove ${cartItem.name} from cart`}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="10"
-                      fill="none"
-                      viewBox="0 0 10 10"
-                    >
-                      <path
-                        className="group-hover:fill-rose-900 group-focus-visible:fill-rose-900 transition duration-200"
-                        fill="#CAAFA7"
-                        d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
-                      />
-                    </svg>
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 flex justify-between items-center">
-              <p className="text-sm text-rose-900">Order Total</p>
-              <p className="text-xl text-rose-900 font-bold">
-                $
-                {formatPrice(
-                  cartItems.reduce(
-                    (total, cartItem) =>
-                      total + cartItem.quantity * cartItem.price,
-                    0
-                  )
-                )}
-              </p>
-            </div>
+            <CartList />
+            <CartPrice />
             <div className="flex mt-6 mb-6 py-4 items-center justify-center gap-2 bg-rose-50">
               <img
                 src="./public/assets/images/icon-carbon-neutral.svg"
@@ -83,17 +30,7 @@ export default function Cart() {
             <OrderConfirmation />
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-4 p-4">
-            <div className="w-32 h-32">
-              <img
-                src="./public/assets/images/illustration-empty-cart.svg"
-                alt="empty cart illustration"
-              />
-            </div>
-            <p className="text-sm text-center font-bold text-rose-500">
-              Your added items will appear here
-            </p>
-          </div>
+          <EmptyCart />
         )}
       </div>
     </section>
