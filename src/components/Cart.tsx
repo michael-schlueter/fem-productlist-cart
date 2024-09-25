@@ -1,7 +1,7 @@
-import CartList from "./CartList";
-import CartPrice from "./CartPrice";
-import EmptyCart from "./EmptyCart";
-import OrderConfirmation from "./OrderConfirmation";
+import CartList from "@/components/CartList";
+import CartPrice from "@/components/CartPrice";
+import EmptyCart from "@/components/EmptyCart";
+import OrderConfirmation from "@/components/OrderConfirmation";
 import { useCartItemsContext } from "@/lib/hooks";
 
 export default function Cart() {

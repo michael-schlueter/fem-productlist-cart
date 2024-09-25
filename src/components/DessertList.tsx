@@ -1,7 +1,7 @@
-import AddToCartButton from "./AddToCartButton";
-import desserts from "../data.json";
-import { formatPrice } from "../lib/utils";
-import SelectQuantityButton from "./SelectQuantityButton";
+import AddToCartButton from "@/components/AddToCartButton";
+import desserts from "@/data.json";
+import { formatPrice } from "@/lib/utils";
+import SelectQuantityButton from "@/components/SelectQuantityButton";
 import { useCartItemsContext } from "@/lib/hooks";
 
 export default function DessertList() {

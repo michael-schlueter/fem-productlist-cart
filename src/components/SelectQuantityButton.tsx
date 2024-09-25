@@ -1,5 +1,5 @@
 import { useCartItemsContext } from "@/lib/hooks";
-import { CartItem } from "../types";
+import { CartItem } from "@/types";
 
 type SelectQuantityButtonProps = {
   cartItem: CartItem;

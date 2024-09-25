@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Button from "./Button";
+import Button from "@/components/Button";
 import { formatPrice } from "@/lib/utils";
 import { useCartItemsContext } from "@/lib/hooks";
 
