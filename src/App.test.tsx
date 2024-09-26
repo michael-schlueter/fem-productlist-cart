@@ -46,12 +46,6 @@ describe("Order flow", () => {
     // Click the first "AddToCart" button
     await user.click(addToCartButtons[0]);
 
-    // Check if the cart item count is updated
-    const cartItemCount = screen.getByRole("heading", {
-      name: /your cart \(1\)/i,
-    });
-    expect(cartItemCount).toBeInTheDocument();
-
     // Check if the item is added to the cart list
     const cartItem = screen.getByRole("heading", {
       name: /waffle with berries/i,
@@ -263,4 +257,56 @@ describe("Order flow", () => {
     });
     expect(decreaseQuantityButton).not.toBeInTheDocument();
   });
+
+  it("updates the count of items in the cart when adding an item to the cart", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Amount of items in the cart is updated to 1
+    const cartItemCount = screen.getByRole("heading", {
+      name: /your cart \(1\)/i,
+    });
+    expect(cartItemCount).toBeInTheDocument();
+  });
+
+  it("updates the count of items in the cart when removing an item from the cart", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Amount of items in the cart is updated to 1
+    const cartItemCount = screen.getByRole("heading", {
+      name: /your cart \(1\)/i,
+    });
+    expect(cartItemCount).toBeInTheDocument();
+
+    // Find the button to remove the item from the cart
+    const removeItemButton = screen.getByRole("button", {
+      name: /remove waffle with berries from cart/i,
+    });
+
+    // Click the button to remove item from cart
+    await user.click(removeItemButton);
+
+    // Amount of items in the cart is updated to 0
+    const updatedCartItemCount = screen.getByRole("heading", {
+      name: /your cart \(0\)/i,
+    });
+    expect(updatedCartItemCount).toBeInTheDocument();
+  });
+
+
 });
