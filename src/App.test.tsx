@@ -87,4 +87,38 @@ describe("Order flow", () => {
     const cartListQuantity = screen.getByText("2x");
     expect(cartListQuantity).toBeInTheDocument();
   });
+
+  it("increments the sum of the price of the item in the cart correctly once quantity is changed from 1 to 2", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the cart list container
+    const cartList = screen.getByRole("list", { name: /cart list/i });
+
+    // Use 'within' to scope queries to the cart list
+    const { getByText } = within(cartList);
+
+    // Verify initial price of the item in the cart
+    const initialPrice = getByText("$6.50");
+    expect(initialPrice).toBeInTheDocument();
+
+    // Find the button to increment the amount of the dessert in the cart
+    const incrementQuantityButton = screen.getByRole("button", {
+      name: /increase quantity/i,
+    });
+
+    // Click the button to increment the quantity
+    await user.click(incrementQuantityButton);
+
+    // Verify the updated price of the item in the cart
+    const updatedPrice = getByText("$13.00");
+    expect(updatedPrice).toBeInTheDocument();
+  });
 });
