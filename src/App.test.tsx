@@ -37,6 +37,7 @@ describe("Order flow", () => {
   it("adds a dessert to the cart when the 'Add to cart' button is clicked", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -56,6 +57,7 @@ describe("Order flow", () => {
   it("increments quantity of the item in the cart", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -85,6 +87,7 @@ describe("Order flow", () => {
   it("updates the sum of the price of the item in the cart correctly once quantity is changed from 1 to 2", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -119,6 +122,7 @@ describe("Order flow", () => {
   it("decrements quantity of the item in the cart", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -155,6 +159,7 @@ describe("Order flow", () => {
   it("updattes the sum of the price of the item in the cart correctly once quantity is changed from 2 to 1", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -197,6 +202,7 @@ describe("Order flow", () => {
   it("removes item from the cart if quantity is changed to 0", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -229,6 +235,7 @@ describe("Order flow", () => {
   it("remove item from the cart by clicking the button to remove the item from the cart", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -261,6 +268,7 @@ describe("Order flow", () => {
   it("updates the count of items in the cart when adding an item to the cart", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -279,6 +287,7 @@ describe("Order flow", () => {
   it("updates the count of items in the cart when removing an item from the cart", async () => {
     const user = userEvent.setup();
     render(<App />);
+
     // Find the "AddToCart" button for the first dessert
     const addToCartButtons = screen.getAllByRole("button", {
       name: /add to cart/i,
@@ -308,5 +317,89 @@ describe("Order flow", () => {
     expect(updatedCartItemCount).toBeInTheDocument();
   });
 
+  it("updates the cart total price if item is added to the cart", async () => {
+    const user = userEvent.setup();
+    render(<App />);
 
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Total is not being displayed initially
+    const initialCartTotalPrice = screen.queryByTestId("cart-total-price");
+    expect(initialCartTotalPrice).not.toBeInTheDocument();
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the total cart price
+    const cartTotalPrice = screen.getByTestId("cart-total-price");
+
+    // Check if the total cart price is updated correctly
+    expect(cartTotalPrice).toHaveTextContent("$6.50");
+  });
+
+  it("updates the cart total price if item is removed from the cart", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Click the second "AddToCart" button
+    await user.click(addToCartButtons[1]);
+
+    // Find the initial total cart price
+    const cartTotalPrice = screen.getByTestId("cart-total-price");
+
+    // Initial cart total price should be $13,50
+    expect(cartTotalPrice).toHaveTextContent("$13.50");
+
+    // Find the button to remove the item from the cart
+    const removeItemButton = screen.getByRole("button", {
+      name: /remove waffle with berries from cart/i,
+    });
+
+    // Click the button to remove item from cart
+    await user.click(removeItemButton);
+
+    // Updatd cart total price should be $7.00
+    expect(cartTotalPrice).toHaveTextContent("$7.00");
+  });
+
+  it("updates the cart total price if quantity of an item in the cart is changed", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the initial total cart price
+    const cartTotalPrice = screen.getByTestId("cart-total-price");
+
+    // Initial cart total price should be $6,50
+    expect(cartTotalPrice).toHaveTextContent("$6.50");
+
+    // Find the button to increment the amount of the dessert in the cart
+    const incrementQuantityButton = screen.getByRole("button", {
+      name: /increase quantity/i,
+    });
+
+    // Click the button to increment the quantity
+    await user.click(incrementQuantityButton);
+
+    // Updated cart total price should be $13.00
+    expect(cartTotalPrice).toHaveTextContent("$13.00");
+  });
 });

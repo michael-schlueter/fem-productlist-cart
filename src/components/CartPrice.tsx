@@ -7,7 +7,7 @@ export default function CartPrice() {
   return (
     <div className="mt-6 flex justify-between items-center">
       <p className="text-sm text-rose-900">Order Total</p>
-      <p className="text-xl text-rose-900 font-bold">
+      <p className="text-xl text-rose-900 font-bold" data-testid="cart-total-price">
         $
         {formatPrice(
           cartItems.reduce(
