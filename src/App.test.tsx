@@ -121,4 +121,40 @@ describe("Order flow", () => {
     const updatedPrice = getByText("$13.00");
     expect(updatedPrice).toBeInTheDocument();
   });
+
+  it("decrements quantity of the item in the cart", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the button to increment the amount of the dessert in the cart
+    const incrementQuantityButton = screen.getByRole("button", {
+      name: /increase quantity/i,
+    });
+
+    // Click the button to increment the quantity to 2
+    await user.click(incrementQuantityButton);
+
+    // Find the button to decrement the amount of the dessert in the cart
+    const decrementQuantityButton = screen.getByRole("button", {
+      name: /decrease quantity/i,
+    });
+
+    // Click the button to decrement the quantity to 1
+    await user.click(decrementQuantityButton);
+
+    // Verify the quantity in the dessert card is being updated to 1
+    const dessertCardQuantity = screen.getByText("1");
+    expect(dessertCardQuantity).toBeInTheDocument();
+
+    // Verify the quantity in the cart list is being updated to 1
+    const cartListQuantity = screen.getByText("1x");
+    expect(cartListQuantity).toBeInTheDocument();
+  })
 });
