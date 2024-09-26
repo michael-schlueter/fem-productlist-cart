@@ -47,14 +47,18 @@ describe("Order flow", () => {
     // Click the first "AddToCart" button
     await user.click(addToCartButtons[0]);
 
+    // Find the cart list
+    const cartList = screen.getByRole("list", { name: /cart list/i });
+    const { getByRole } = within(cartList);
+
     // Check if the item is added to the cart list
-    const cartItem = screen.getByRole("heading", {
+    const cartItem = getByRole("heading", {
       name: /waffle with berries/i,
     });
     expect(cartItem).toBeInTheDocument();
   });
 
-  it("increments quantity of the item in the cart", async () => {
+  it("increments quantity of the item in the cart when the 'increase quantity' button is clicked", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -68,7 +72,7 @@ describe("Order flow", () => {
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
-      name: /increase quantity/i,
+      name: /increase Waffle with Berries quantity/i,
     });
     expect(incrementQuantityButton).toBeInTheDocument();
 
@@ -79,12 +83,16 @@ describe("Order flow", () => {
     const dessertCardQuantity = screen.getByText("2");
     expect(dessertCardQuantity).toBeInTheDocument();
 
+    // Find the cart list
+    const cartList = screen.getByRole("list", { name: /cart list/i });
+    const { getByText } = within(cartList);
+
     // Verify the quantity displayed in the cart list is updated to 2
-    const cartListQuantity = screen.getByText("2x");
+    const cartListQuantity = getByText("2x");
     expect(cartListQuantity).toBeInTheDocument();
   });
 
-  it("updates the sum of the price of the item in the cart correctly once quantity is changed from 1 to 2", async () => {
+  it("updates the sum of the price of the item in the cart correctly if quantity is increased from 1 to 2", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -108,7 +116,7 @@ describe("Order flow", () => {
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
-      name: /increase quantity/i,
+      name: /increase Waffle with Berries quantity/i,
     });
 
     // Click the button to increment the quantity
@@ -119,7 +127,7 @@ describe("Order flow", () => {
     expect(updatedPrice).toBeInTheDocument();
   });
 
-  it("decrements quantity of the item in the cart", async () => {
+  it("decrements quantity of the item in the cart if the 'decrease quantity' button is clicked", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -133,7 +141,7 @@ describe("Order flow", () => {
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
-      name: /increase quantity/i,
+      name: /increase Waffle with Berries quantity/i,
     });
 
     // Click the button to increment the quantity to 2
@@ -141,7 +149,7 @@ describe("Order flow", () => {
 
     // Find the button to decrement the amount of the dessert in the cart
     const decrementQuantityButton = screen.getByRole("button", {
-      name: /decrease quantity/i,
+      name: /decrease Waffle with Berries quantity/i,
     });
 
     // Click the button to decrement the quantity to 1
@@ -151,12 +159,16 @@ describe("Order flow", () => {
     const dessertCardQuantity = screen.getByText("1");
     expect(dessertCardQuantity).toBeInTheDocument();
 
+    // Find the cart list
+    const cartList = screen.getByRole("list", { name: /cart list/i });
+    const { getByText } = within(cartList);
+
     // Verify the quantity in the cart list is being updated to 1
-    const cartListQuantity = screen.getByText("1x");
+    const cartListQuantity = getByText("1x");
     expect(cartListQuantity).toBeInTheDocument();
   });
 
-  it("updattes the sum of the price of the item in the cart correctly once quantity is changed from 2 to 1", async () => {
+  it("updates the sum of the price of the item in the cart correctly if quantity is decreased from 2 to 1", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -176,7 +188,7 @@ describe("Order flow", () => {
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
-      name: /increase quantity/i,
+      name: /increase Waffle with Berries quantity/i,
     });
 
     // Click the button to increment the quantity
@@ -188,7 +200,7 @@ describe("Order flow", () => {
 
     // Find the button to decrement the amount of the dessert in the cart
     const decrementQuantityButton = screen.getByRole("button", {
-      name: /decrease quantity/i,
+      name: /decrease Waffle with Berries quantity/i,
     });
 
     // Click the button to decrement the quantity to 1
@@ -213,7 +225,7 @@ describe("Order flow", () => {
 
     // Find the button to decrement the amount of the dessert in the cart
     const decrementQuantityButton = screen.getByRole("button", {
-      name: /decrease quantity/i,
+      name: /decrease Waffle with Berries quantity/i,
     });
 
     // Click the button to decrement the quantity to 0
@@ -232,7 +244,7 @@ describe("Order flow", () => {
     expect(decreaseQuantityButton).not.toBeInTheDocument();
   });
 
-  it("remove item from the cart by clicking the button to remove the item from the cart", async () => {
+  it("removes item from the cart by clicking the button to remove the item from the cart", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -244,8 +256,12 @@ describe("Order flow", () => {
     // Click the first "AddToCart" button
     await user.click(addToCartButtons[0]);
 
+    // Find the cart list
+    const cartList = screen.getByRole("list", { name: /Cart list/i });
+    const { getByRole, queryByRole } = within(cartList);
+
     // Find the button to remove the item from the cart
-    const removeItemButton = screen.getByRole("button", {
+    const removeItemButton = getByRole("button", {
       name: /remove waffle with berries from cart/i,
     });
 
@@ -253,14 +269,14 @@ describe("Order flow", () => {
     await user.click(removeItemButton);
 
     // Item is not being displayed in the cart anymore
-    const cartItem = screen.queryByRole("heading", {
+    const cartItem = queryByRole("heading", {
       name: /waffle with berries/i,
     });
     expect(cartItem).not.toBeInTheDocument();
 
     // Select quantity button is not being displayed in the card of the respective dessert
     const decreaseQuantityButton = screen.queryByRole("button", {
-      name: /decrease quantity/i,
+      name: /decrease waffle with berries quantity/i,
     });
     expect(decreaseQuantityButton).not.toBeInTheDocument();
   });
@@ -393,7 +409,7 @@ describe("Order flow", () => {
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
-      name: /increase quantity/i,
+      name: /increase Waffle with Berries quantity/i,
     });
 
     // Click the button to increment the quantity
