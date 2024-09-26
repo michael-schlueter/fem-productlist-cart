@@ -28,7 +28,7 @@ export default function OrderConfirmation() {
           </DialogDescription>
         </div>
         <div className="bg-rose-50 p-6 pt-2">
-          <ul className="flex flex-col">
+          <ul className="flex flex-col" aria-label="Confirmed cart list">
             {cartItems.map((cartItem, index) => (
               <li
                 key={index}
@@ -59,7 +59,7 @@ export default function OrderConfirmation() {
           </ul>
           <div className="mt-6 flex justify-between items-center">
             <p className="text-sm text-rose-900">Order Total</p>
-            <p className="text-xl text-rose-900 font-bold">
+            <p className="text-xl text-rose-900 font-bold" data-testid="confirmed-order-total">
               $
               {formatPrice(
                 cartItems.reduce(

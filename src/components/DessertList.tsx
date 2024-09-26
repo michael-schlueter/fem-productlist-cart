@@ -10,7 +10,7 @@ export default function DessertList() {
   return (
     <section className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold">Desserts</h1>
-      <ul className="flex flex-col gap-6 sm:grid sm:grid-cols-3 sm:gap-y-8">
+      <ul className="flex flex-col gap-6 sm:grid sm:grid-cols-3 sm:gap-y-8" aria-label="Dessert list">
         {desserts.map((dessert, index) => {
           const cartItem = cartItems.find((item) => item.name === dessert.name);
           return (

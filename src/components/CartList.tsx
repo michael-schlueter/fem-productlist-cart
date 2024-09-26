@@ -5,7 +5,7 @@ export default function CartList() {
   const { cartItems, removeItemFromCart } = useCartItemsContext();
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col" aria-label="Cart list">
       {cartItems.map((cartItem, index) => (
         <li
           key={index}
