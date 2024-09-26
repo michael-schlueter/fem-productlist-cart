@@ -402,4 +402,65 @@ describe("Order flow", () => {
     // Updated cart total price should be $13.00
     expect(cartTotalPrice).toHaveTextContent("$13.00");
   });
+
+  it("cart items are correctly displayed in order confirmation", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the order confirmation button
+    const orderConfirmationButton = screen.getByRole("button", {
+      name: /confirm order/i,
+    });
+
+    // Click the order confirmation button
+    await user.click(orderConfirmationButton);
+
+    // Find list of confirmed cart list items
+    const confirmedCartList = screen.getByRole("list", {
+      name: /confirmed cart list/i,
+    });
+    const { getByText } = within(confirmedCartList);
+
+    // Find cart item in confirmed cart item list
+    const confirmedCartItem = getByText("Waffle with Berries");
+    expect(confirmedCartItem).toBeInTheDocument();
+  });
+
+  it("total cart price is correctly displayed in the order confirmation", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Click the second "AddToCart" button
+    await user.click(addToCartButtons[1]);
+
+    // Find the order confirmation button
+    const orderConfirmationButton = screen.getByRole("button", {
+      name: /confirm order/i,
+    });
+
+    // Click the order confirmation button
+    await user.click(orderConfirmationButton);
+
+    // Find the confirmed order total
+    const confirmedOrderTotal = screen.getByTestId("confirmed-order-total");
+
+    // Order total should be $13.50
+    expect(confirmedOrderTotal).toHaveTextContent("$13.50");
+  });
 });
