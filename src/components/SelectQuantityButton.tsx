@@ -16,6 +16,7 @@ export default function SelectQuantityButton({
       <button
         onClick={() => decreaseItemQuantity(cartItem.name)}
         className="group w-5 h-5 border border-white hover:bg-white focus:outline-none focus-visible:bg-white rounded-full flex items-center justify-center transition duration-200"
+        aria-label="Decrease quantity"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +36,7 @@ export default function SelectQuantityButton({
       <button
         onClick={() => increaseItemQuantity(cartItem.name)}
         className="group w-5 h-5 border border-white hover:bg-white focus:outline-none focus-visible:bg-white rounded-full flex items-center justify-center transition duration-200"
+        aria-label="Increase quantity"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
