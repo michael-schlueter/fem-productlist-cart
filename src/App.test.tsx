@@ -463,4 +463,45 @@ describe("Order flow", () => {
     // Order total should be $13.50
     expect(confirmedOrderTotal).toHaveTextContent("$13.50");
   });
+
+  it("starts new order", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the order confirmation button
+    const orderConfirmationButton = screen.getByRole("button", {
+      name: /confirm order/i,
+    });
+
+    // Click the order confirmation button
+    await user.click(orderConfirmationButton);
+
+    // Find the button to start a new order
+    const startNewOrderButton = screen.getByRole("button", {
+      name: /start new order/i,
+    });
+
+    // Click the button to start a new order
+    await user.click(startNewOrderButton);
+
+    // Count of items in the cart should be 0
+    const cartItemCount = screen.getByRole("heading", {
+      name: /your cart \(0\)/i,
+    });
+    expect(cartItemCount).toBeInTheDocument();
+
+    // All quantities should be reset
+    const incrementQuantityButton = screen.queryByRole("button", {
+      name: /increase quantity/i,
+    });
+    expect(incrementQuantityButton).not.toBeInTheDocument();
+  });
 });
