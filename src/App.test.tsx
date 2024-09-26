@@ -231,4 +231,36 @@ describe("Order flow", () => {
     });
     expect(decreaseQuantityButton).not.toBeInTheDocument();
   });
+
+  it("remove item from the cart by clicking the button to remove the item from the cart", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    // Find the "AddToCart" button for the first dessert
+    const addToCartButtons = screen.getAllByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Click the first "AddToCart" button
+    await user.click(addToCartButtons[0]);
+
+    // Find the button to remove the item from the cart
+    const removeItemButton = screen.getByRole("button", {
+      name: /remove waffle with berries from cart/i,
+    });
+
+    // Click the button to remove item from cart
+    await user.click(removeItemButton);
+
+    // Item is not being displayed in the cart anymore
+    const cartItem = screen.queryByRole("heading", {
+      name: /waffle with berries/i,
+    });
+    expect(cartItem).not.toBeInTheDocument();
+
+    // Select quantity button is not being displayed in the card of the respective dessert
+    const decreaseQuantityButton = screen.queryByRole("button", {
+      name: /decrease quantity/i,
+    });
+    expect(decreaseQuantityButton).not.toBeInTheDocument();
+  });
 });
