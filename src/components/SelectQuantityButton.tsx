@@ -1,5 +1,6 @@
 import { useCartItemsContext } from "@/lib/hooks";
 import { CartItem } from "@/types";
+import { useEffect, useRef } from "react";
 
 type SelectQuantityButtonProps = {
   cartItem: CartItem;
@@ -9,6 +10,13 @@ export default function SelectQuantityButton({
   cartItem,
 }: SelectQuantityButtonProps) {
   const { increaseItemQuantity, decreaseItemQuantity } = useCartItemsContext();
+  const decreaseQuantityButton = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (decreaseQuantityButton.current) {
+      decreaseQuantityButton.current.focus();
+    }
+  }, []);
 
   return (
     // -mt-38 to offset gap and 1/2 height of button
@@ -16,6 +24,7 @@ export default function SelectQuantityButton({
       <button
         onClick={() => decreaseItemQuantity(cartItem.name)}
         className="group w-5 h-5 border border-white hover:bg-white focus:outline-none focus-visible:bg-white rounded-full flex items-center justify-center transition duration-200"
+        ref={decreaseQuantityButton}
         aria-label={`Decrease ${cartItem.name} quantity`}
       >
         <svg
