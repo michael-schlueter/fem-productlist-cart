@@ -19,7 +19,7 @@ export default function DessertList() {
           return (
             <li className="flex flex-col gap-4 outline-none" key={index}>
               <div
-                className={`rounded-lg overflow-hidden transition duration-200 border-none ${
+                className={`rounded-lg overflow-hidden transition duration-200 border-2 ${
                   cartItem ? "border-red-500" : "border-transparent"
                 }`}
               >
