@@ -14,10 +14,10 @@ export default function DessertList() {
         {desserts.map((dessert, index) => {
           const cartItem = cartItems.find((item) => item.name === dessert.name);
           return (
-            <li className="flex flex-col gap-4" key={index}>
+            <li className="flex flex-col gap-4 outline-none" key={index}>
               <div
-                className={`rounded-lg overflow-hidden ${
-                  cartItem ? " border-2 border-red-500" : ""
+                className={`rounded-lg overflow-hidden transition duration-700 border-2 ${
+                  cartItem ? "border-red-500" : "border-transparent"
                 }`}
               >
                 <picture>
