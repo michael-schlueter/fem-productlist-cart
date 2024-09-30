@@ -19,7 +19,7 @@ export default function OrderConfirmation() {
       </DialogTrigger>
       <DialogContent className="grid gap-8 p-6 pt-10 border-none rounded-t-xl">
         <div>
-          <img src="./public/assets/images/icon-order-confirmed.svg"></img>
+          <img alt="Order confirmed" src="./public/assets/images/icon-order-confirmed.svg" />
           <DialogTitle className="text-2xl text-rose-900 font-bold mt-6">
             Order Confirmed
           </DialogTitle>
@@ -59,7 +59,10 @@ export default function OrderConfirmation() {
           </ul>
           <div className="mt-6 flex justify-between items-center">
             <p className="text-sm text-rose-900">Order Total</p>
-            <p className="text-xl text-rose-900 font-bold" data-testid="confirmed-order-total">
+            <p
+              className="text-xl text-rose-900 font-bold"
+              data-testid="confirmed-order-total"
+            >
               $
               {formatPrice(
                 cartItems.reduce(

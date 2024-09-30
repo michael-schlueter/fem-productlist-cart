@@ -6,7 +6,7 @@ type CartItemsContext = {
   addCartItem: (cartItem: CartItem) => void;
   increaseItemQuantity: (cartItemName: string) => void;
   decreaseItemQuantity: (cartItemName: string) => void;
-  removeItemFromCart: (cartItemName: string) => void;
+  removeCartItem: (cartItemName: string) => void;
   startNewOrder: () => void;
 };
 
@@ -41,21 +41,16 @@ export default function CartItemsContextProvider({
   const decreaseItemQuantity = (cartItemName: string) => {
     setCartItems(
       cartItems
-        .map((item) => {
-          if (item.name === cartItemName) {
-            return {
-              ...item,
-              quantity: item.quantity - 1,
-            };
-          } else {
-            return item;
-          }
-        })
+        .map((item) =>
+          item.name === cartItemName
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
         .filter((item) => item.quantity > 0) // filter out items with quantity 0
     );
   };
 
-  const removeItemFromCart = (cartItemName: string) => {
+  const removeCartItem = (cartItemName: string) => {
     setCartItems(cartItems.filter((item) => item.name !== cartItemName));
   };
 
@@ -69,7 +64,7 @@ export default function CartItemsContextProvider({
     addCartItem,
     increaseItemQuantity,
     decreaseItemQuantity,
-    removeItemFromCart,
+    removeCartItem,
     startNewOrder,
   };
 

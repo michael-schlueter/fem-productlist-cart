@@ -2,7 +2,7 @@ import { useCartItemsContext } from "@/lib/hooks";
 import { formatPrice } from "@/lib/utils";
 
 export default function CartList() {
-  const { cartItems, removeItemFromCart } = useCartItemsContext();
+  const { cartItems, removeCartItem } = useCartItemsContext();
 
   return (
     <ul className="flex flex-col" aria-label="Cart list">
@@ -22,7 +22,7 @@ export default function CartList() {
             </div>
           </div>
           <button
-            onClick={() => removeItemFromCart(cartItem.name)}
+            onClick={() => removeCartItem(cartItem.name)}
             className="group w-5 h-5 flex justify-center items-center rounded-full border border-rose-500 hover:border-rose-900 focus:outline-none focus-visible:border-rose-900 transition duration-200"
             aria-label={`Remove ${cartItem.name} from cart`}
           >

@@ -4,7 +4,7 @@ export default function EmptyCart() {
       <div className="w-32 h-32">
         <img
           src="./public/assets/images/illustration-empty-cart.svg"
-          alt="empty cart illustration"
+          alt="Empty shopping cart"
         />
       </div>
       <p className="text-sm text-center font-bold text-rose-500">

@@ -39,13 +39,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
-    expect(addToCartButtons.length).toBeGreaterThan(0);
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the cart list
     const cartList = screen.getByRole("list", { name: /cart list/i });
@@ -63,12 +62,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
@@ -97,12 +96,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the cart list container
     const cartList = screen.getByRole("list", { name: /cart list/i });
@@ -132,12 +131,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the button to increment the amount of the dessert in the cart
     const incrementQuantityButton = screen.getByRole("button", {
@@ -173,12 +172,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the cart list container
     const cartList = screen.getByRole("list", { name: /cart list/i });
@@ -216,12 +215,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the button to decrement the amount of the dessert in the cart
     const decrementQuantityButton = screen.getByRole("button", {
@@ -249,12 +248,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the cart list
     const cartList = screen.getByRole("list", { name: /Cart list/i });
@@ -286,12 +285,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Amount of items in the cart is updated to 1
     const cartItemCount = screen.getByRole("heading", {
@@ -305,12 +304,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Amount of items in the cart is updated to 1
     const cartItemCount = screen.getByRole("heading", {
@@ -338,8 +337,8 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Total is not being displayed initially
@@ -347,7 +346,7 @@ describe("Order flow", () => {
     expect(initialCartTotalPrice).not.toBeInTheDocument();
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the total cart price
     const cartTotalPrice = screen.getByTestId("cart-total-price");
@@ -361,15 +360,19 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addWaffleToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
+    });
+
+    const addCremeBruleeToCartButton = screen.getByRole("button", {
+      name: /Add Vanilla Bean Crème Brûlée to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addWaffleToCartButton);
 
     // Click the second "AddToCart" button
-    await user.click(addToCartButtons[1]);
+    await user.click(addCremeBruleeToCartButton);
 
     // Find the initial total cart price
     const cartTotalPrice = screen.getByTestId("cart-total-price");
@@ -394,12 +397,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the initial total cart price
     const cartTotalPrice = screen.getByTestId("cart-total-price");
@@ -424,12 +427,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the order confirmation button
     const orderConfirmationButton = screen.getByRole("button", {
@@ -455,15 +458,19 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addWaffleToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
+    });
+
+    const addCremeBruleeToCartButton = screen.getByRole("button", {
+      name: /Add Vanilla Bean Crème Brûlée to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addWaffleToCartButton);
 
     // Click the second "AddToCart" button
-    await user.click(addToCartButtons[1]);
+    await user.click(addCremeBruleeToCartButton);
 
     // Find the order confirmation button
     const orderConfirmationButton = screen.getByRole("button", {
@@ -485,12 +492,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the order confirmation button
     const orderConfirmationButton = screen.getByRole("button", {
@@ -526,12 +533,12 @@ describe("Order flow", () => {
     render(<App />);
 
     // Find the "AddToCart" button for the first dessert
-    const addToCartButtons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add waffle with berries to cart/i,
     });
 
     // Click the first "AddToCart" button
-    await user.click(addToCartButtons[0]);
+    await user.click(addToCartButton);
 
     // Find the order confirmation button
     const orderConfirmationButton = screen.getByRole("button", {
