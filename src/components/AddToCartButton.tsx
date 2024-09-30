@@ -25,7 +25,7 @@ export default function AddToCartButton({
       {...props}
     >
       <img
-        src="./public/assets/images/icon-add-to-cart.svg"
+        src="./assets/images/icon-add-to-cart.svg"
         alt="Add to cart Icon"
       />
       Add to Cart

@@ -19,7 +19,7 @@ export default function OrderConfirmation() {
       </DialogTrigger>
       <DialogContent className="grid gap-8 p-6 pt-10 border-none rounded-t-xl">
         <div>
-          <img alt="Order confirmed" src="./public/assets/images/icon-order-confirmed.svg" />
+          <img alt="Order confirmed" src="./assets/images/icon-order-confirmed.svg" />
           <DialogTitle className="text-2xl text-rose-900 font-bold mt-6">
             Order Confirmed
           </DialogTitle>

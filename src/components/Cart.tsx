@@ -19,7 +19,7 @@ export default function Cart() {
             <CartPrice />
             <div className="flex mt-6 mb-6 py-4 items-center justify-center gap-2 bg-rose-50">
               <img
-                src="./public/assets/images/icon-carbon-neutral.svg"
+                src="./assets/images/icon-carbon-neutral.svg"
                 alt="carbon neutral icon"
               />
               <p className="text-sm text-rose-900">
