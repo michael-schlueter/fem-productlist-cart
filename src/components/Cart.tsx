@@ -23,7 +23,7 @@ export default function Cart() {
                 alt="carbon neutral icon"
               />
               <p className="text-sm text-rose-900">
-                This is a <span className="font-bold">carbon-neutral</span>{" "}
+                This is a <span className="font-semibold">carbon-neutral</span>{" "}
                 delivery
               </p>
             </div>

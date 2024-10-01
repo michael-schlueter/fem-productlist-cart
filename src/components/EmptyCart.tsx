@@ -7,7 +7,7 @@ export default function EmptyCart() {
           alt="Empty shopping cart"
         />
       </div>
-      <p className="text-sm text-center font-bold text-rose-500">
+      <p className="text-sm text-center font-semibold text-rose-500">
         Your added items will appear here
       </p>
     </div>

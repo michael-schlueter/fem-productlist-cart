@@ -20,7 +20,7 @@ export default function SelectQuantityButton({
 
   return (
     // -mt-38 to offset gap and 1/2 height of button
-    <div className="w-40 h-[44px] rounded-full bg-red-500 text-sm text-white font-bold flex items-center justify-between p-3 cursor-auto self-center -mt-[38px]">
+    <div className="w-40 h-[44px] rounded-full bg-red-500 text-sm text-white font-semibold flex items-center justify-between p-3 cursor-auto self-center -mt-[38px]">
       <button
         onClick={() => decreaseItemQuantity(cartItem.name)}
         className="group w-5 h-5 border border-white hover:bg-white focus:outline-none focus-visible:bg-white rounded-full flex items-center justify-center transition duration-200"

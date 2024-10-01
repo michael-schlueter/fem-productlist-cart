@@ -12,11 +12,11 @@ export default function CartList() {
           className="flex items-center justify-between cart-item py-4 border-b-[1px] border-b-rose-100"
         >
           <div className="flex flex-col gap-2">
-            <h3 className="text-sm font-bold text-rose-900">{cartItem.name}</h3>
+            <h3 className="text-sm font-semibold text-rose-900">{cartItem.name}</h3>
             <div className="flex gap-2 text-sm">
-              <p className="text-red-500 font-bold">{cartItem.quantity}x</p>
+              <p className="text-red-500 font-semibold">{cartItem.quantity}x</p>
               <p className="text-rose-500">@{formatPrice(cartItem.price)}</p>
-              <p className="text-rose-500 font-bold">
+              <p className="text-rose-500 font-semibold">
                 ${formatPrice(cartItem.quantity * cartItem.price)}
               </p>
             </div>
